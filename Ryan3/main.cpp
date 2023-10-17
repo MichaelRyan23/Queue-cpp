@@ -5,7 +5,10 @@
 *** DUE DATE    : 10 - 18 - 2023
 *** INSTRUCTOR  : GAMRADT 
 *********************************************************************
-*** DESCRIPTION : <detailed english description of the current assignment>
+*** DESCRIPTION : This program implements an ADT called queue which
+*** represents what a queue would do in a real-life scenario. Values are
+*** Enqueued to the back of the queue, and get out from the head of the queue.
+*** First in first out.
 ********************************************************************/
 
 #include <iostream>
@@ -14,9 +17,10 @@ using namespace std;
 
 int main() {
 
+    // Test default constructor and enqueue
     Queue myQueue(5); // Queue of size 5
     cout << "Enqueuing elements..." << endl;
-    for(int i = 0; i <= 4; ++i) {
+    for(int i = 1; i <= 5; ++i) {
         myQueue.enqueue(i); // Should be able to enqueue 5 elements
         myQueue.view();
     }
@@ -28,7 +32,7 @@ int main() {
     // Test dequeue
     cout << "Dequeuing elements..." << endl;
     int removedElement;
-    for(int i = 0; i <= 4; ++i) {
+    for(int i = 1; i <= 5; ++i) {
         myQueue.dequeue(removedElement); // Should dequeue all elements
         cout << "Dequeued: " << removedElement << endl;
         myQueue.view();

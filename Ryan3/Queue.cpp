@@ -5,15 +5,28 @@
 *** DUE DATE    : 10 - 18 - 2023
 *** INSTRUCTOR  : GAMRADT 
 *********************************************************************
-*** DESCRIPTION : <detailed english description of the abstract data type> ***
-*** <including supporting operations> ***
+*** DESCRIPTION : The implemented "Queue" ADT is a collection of elements
+*** with the first in first out idea. Queue uses an array of integers to
+*** manage items, as well as implements the circular array idea. To manipulate
+*** data, enqueue and dequeue are used to change the locations of head and tail
+*** making sure not to touch the data.
 ********************************************************************/
 
 #include <iostream>
 #include "Queue.h"
 using namespace std;
 
-// constructor
+/********************************************************************
+*** FUNCTION constructor
+*********************************************************************
+*** DESCRIPTION : Default and parameterized constructor. It initializes
+*** an array of elements of the given size (default size 3) and sets top
+*** and head values to -1, indicating an empty queue.
+*** INPUT ARGS : size
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : 
+*** RETURN : 
+********************************************************************/
 Queue::Queue(const short size) : QUEUE_SIZE(size), head(-1), tail(-1) {
 
     queueArray = new (std::nothrow) Element[QUEUE_SIZE];
@@ -24,7 +37,17 @@ Queue::Queue(const short size) : QUEUE_SIZE(size), head(-1), tail(-1) {
     }
 }
 
-// copy constructor
+/********************************************************************
+*** FUNCTION copy constructor
+*********************************************************************
+*** DESCRIPTION : Copy constructor creates a new queue ADT from an
+*** existing one. Using enqueue and dequeue, the new queue will have
+*** the same order of elements in it as the old queue being copied from.
+*** INPUT ARGS : old
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : old
+*** RETURN : 
+********************************************************************/
 Queue::Queue(Queue &old): QUEUE_SIZE(old.QUEUE_SIZE), head(-1), tail(-1) {
 
     Queue tempArray(old.QUEUE_SIZE);
@@ -50,6 +73,17 @@ Queue::Queue(Queue &old): QUEUE_SIZE(old.QUEUE_SIZE), head(-1), tail(-1) {
 
 }
 
+/********************************************************************
+*** FUNCTION destructor
+*********************************************************************
+*** DESCRIPTION : Destructor first dequeues all the elements from the
+*** queue object, then it deletes the queueArray (element pointer)
+*** from memory.
+*** INPUT ARGS : 
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : 
+*** RETURN : 
+********************************************************************/
 Queue::~Queue() {
 
     Element dequeuedElement;
@@ -62,6 +96,17 @@ Queue::~Queue() {
 
 }
 
+/********************************************************************
+*** FUNCTION enqueue
+*********************************************************************
+*** DESCRIPTION : Enqueue's function is to insert a value at the tail
+*** of the queue. Checks if it's full, if not check if it's empty, if it
+*** is head and tail are incremented and item goes into the tail spot. 
+*** INPUT ARGS : item
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : 
+*** RETURN : void
+********************************************************************/
 void Queue::enqueue(const Element item) {
 
     if(isFull()) {
@@ -78,6 +123,18 @@ void Queue::enqueue(const Element item) {
 
 }
 
+/********************************************************************
+*** FUNCTION dequeue
+*********************************************************************
+*** DESCRIPTION : Dequeue removes an item from the front of the queue.
+*** Checks to see if queue is empty, if not, provides item at head loc to the
+*** output parameter and updates head. If dequeued element was last in
+*** queue, it resets the queue to empty state.
+*** INPUT ARGS : 
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : removedElement
+*** RETURN : void
+********************************************************************/
 void Queue::dequeue(Element &removedElement) {
     
     if(isEmpty()) {
@@ -95,6 +152,18 @@ void Queue::dequeue(Element &removedElement) {
 
 }
 
+/********************************************************************
+*** FUNCTION view
+*********************************************************************
+*** DESCRIPTION : Displays the contents of the queue by dequeuing elements
+*** from the original queue and enqueuing them into a temporary one while
+*** displaying. After they're all displayed, it goes back in reverse to 
+*** to the original queue, preserving the order.
+*** INPUT ARGS : 
+*** OUTPUT ARGS : 
+*** IN/OUT ARGS : 
+*** RETURN : void
+********************************************************************/
 void Queue::view() {
 
     if(isEmpty()) {

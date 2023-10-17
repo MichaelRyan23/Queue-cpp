@@ -20,12 +20,12 @@ typedef Element * ElementPtr;
 
 class Queue {
     public:
-        explicit Queue(int size = 3);
+        explicit Queue(short size = 3);
         Queue(Queue &old);
         ~Queue();
 
         void enqueue(const Element item);
-        void dequeue(Element &);
+        void dequeue(Element &removedElement);
         void view();
 
     private:

@@ -118,7 +118,8 @@ void Queue::enqueue(const Element item) {
         queueArray[++tail] = item;
         head++;
     } else {
-        queueArray[++tail] = item;
+        tail = (tail + 1) % QUEUE_SIZE;
+        queueArray[tail] = item;
     }
 
 }
@@ -192,7 +193,7 @@ void Queue::view() {
 }
 
 bool Queue::isEmpty() const {
-    return (head == -1);
+    return (head == -1) && (tail == -1);
 }
 
 bool Queue::isFull() const {
